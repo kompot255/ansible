@@ -1,4 +1,7 @@
 - hosts: servers
+  vars:
+    nginx_port: 80
+    root_dir: /etc/nginx/
   tasks:
     - name: install nginx
       ansible.builtin.apt:
@@ -13,9 +16,9 @@
       become: yes
 
     - name: update nginx config
-      ansible.builtin.copy:
-        src: files/nginx.conf
-        dest: /etc/nginx/nginx.conf
+      ansible.builtin.template:
+        src: templates/nginx.conf
+        dest: "{{root_dir}}nginx.conf"
       notify:
         - restart nginx
       become: yes
