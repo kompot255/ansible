@@ -1,5 +1,4 @@
 - hosts: servers
-  gather_facts: no
   tasks:
     - name: install git
       ansible.builtin.apt:
@@ -8,9 +7,11 @@
         update_cache: yes
       become: yes
       tags: git
+      when: ansible_distribution == "Ubuntu"
 
     - name: update cache
       ansible.builtin.apt:
         update_cache: yes
       become: yes
       tags: update
+      when: ansible_distribution == "Ubuntu"
