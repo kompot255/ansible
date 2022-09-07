@@ -5,3 +5,4 @@ users:
   - jaime
   - sansa
   - robert
+var_string: "This is server {{ ansible_hostname }}!"
